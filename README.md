@@ -8,7 +8,7 @@ Tantangan ini menguji kemampuan Network Services Pentesting yang mencakup fase r
 ### 1. Port Scanning & Enumerasi Web
 Langkah pertama adalah melakukan pemindaian port menggunakan Nmap. Hasil menunjukkan Port 80 (HTTP) terbuka. Karena halaman utama statis, dilakukan enumerasi direktori menggunakan Gobuster.
 
-**gobuster dir -u http://34.142.169.86 -w /usr/share/seclists/Discovery/Web-Content/common.txt**
+**gobuster dir -u http://34.142.169.86 -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt**
 
 Temuan: Ditemukan direktori tersembunyi /pcap.
 
