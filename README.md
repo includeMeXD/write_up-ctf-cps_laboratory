@@ -29,7 +29,7 @@ Menggunakan kredensial tersebut, akses dilakukan ke layanan FTP target.
 
 Di dalam FTP server, ditemukan file hint.txt milik user root. 
 
-**Isi Hint: "Server Error. Cek database di /product.php?id=1"**
+Isi Hint: **"Server Error. Cek database di /product.php?id=1"**
 
 ## Phase 3: Web Exploitation (SQL Injection)
 Berdasarkan hint, terdapat kerentanan SQL Injection pada parameter id. Eksploitasi dilakukan menggunakan SQLMap untuk mengekstrak data sensitif dari database.
