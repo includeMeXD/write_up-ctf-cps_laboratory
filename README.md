@@ -79,3 +79,5 @@ Binary vim dapat digunakan untuk memanggil shell sistem. Karena dijalankan denga
 Akses shell root berhasil didapatkan (uid=0(root)). Flag terakhir ditemukan di direktori root.
 
 **cat /root/root_flag.txt**
+
+Flag 2: The Escalation berhasil didapatkan.
