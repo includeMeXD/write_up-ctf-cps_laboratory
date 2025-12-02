@@ -1,10 +1,10 @@
-Write-Up: Cyber Academy - Linux Service Pentesting
+# Write-Up: Cyber Academy - Linux Service Pentesting
 Target IP: 34.142.169.86 Solved By: [Nama/Tim Anda]
 
-Pendahuluan
+## Pendahuluan
 Tantangan ini menguji kemampuan Network Services Pentesting yang mencakup fase reconnaissance, analisis forensik jaringan, eksploitasi web (SQL Injection), teknik SSH Tunneling, hingga eskalasi hak akses (Privilege Escalation) untuk mendapatkan akses root.
 
-Phase 1 & 2: Reconnaissance & Forensics
+## Phase 1 & 2: Reconnaissance & Forensics
 1. Port Scanning & Enumerasi Web
 Langkah pertama adalah melakukan pemindaian port menggunakan Nmap. Hasil menunjukkan Port 80 (HTTP) terbuka. Karena halaman utama statis, dilakukan enumerasi direktori menggunakan Gobuster.
 
@@ -30,7 +30,7 @@ ftp 34.142.169.86
 
 Di dalam FTP server, ditemukan file hint.txt milik user root. Isi Hint: "Server Error. Cek database di /product.php?id=1"
 
-Phase 3: Web Exploitation (SQL Injection)
+## Phase 3: Web Exploitation (SQL Injection)
 Berdasarkan hint, terdapat kerentanan SQL Injection pada parameter id. Eksploitasi dilakukan menggunakan SQLMap untuk mengekstrak data sensitif dari database.
 
 1. Ekstraksi Database
@@ -46,7 +46,7 @@ Hasil:
 Username: cyberacademy
 SSH Key: (Sebuah RSA Private Key yang formatnya berantakan/satu baris).
 
-Phase 4: Network Security (User Flag) - "Hidden Tunnel"
+## Phase 4: Network Security (User Flag) - "Hidden Tunnel"
 Untuk masuk ke server, kita memerlukan SSH Key yang didapat dari SQLMap. Namun, format key tersebut rusak (berupa satu baris dengan karakter \n literal).
 
 1. Perbaikan Format SSH Key (Critical Step)
@@ -61,7 +61,7 @@ ssh -i id_rsa -L 9090:127.0.0.1:8080 cyberacademy@34.142.169.86
 
 Setelah tunnel terbentuk, akses browser ke http://localhost:9090 menampilkan Flag 1: Hidden Tunnel.
 
-Phase 5: Privilege Escalation (Root Flag) - "The Escalation"
+## Phase 5: Privilege Escalation (Root Flag) - "The Escalation"
 Langkah terakhir adalah mendapatkan akses root. Pengecekan dilakukan menggunakan sudo -l untuk melihat perintah apa yang bisa dijalankan user cyberacademy sebagai root tanpa password.
 
 Output sudo -l: (ALL) NOPASSWD: /usr/bin/vim
